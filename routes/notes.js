@@ -1,5 +1,6 @@
 const notes = require('express').Router();
 const { readFromFile, readAndAppend } = require('../helpers/fsUtils');
+const uuid = require('../helpers/uuid');
 
 
 
@@ -23,6 +24,7 @@ notes.post('/', (req, res) => {
       const newText = {
         title,
         text,
+        text_id: uuid(),
       };
   
       readAndAppend(newText, './db/db.json');
@@ -31,6 +33,7 @@ notes.post('/', (req, res) => {
       const response = {
         status: 'success',
         body: newText,
+      
       };
   
       res.json(response);
@@ -38,5 +41,6 @@ notes.post('/', (req, res) => {
       res.json('Error in posting text');
     }
   });
+  
   
   module.exports = notes;
