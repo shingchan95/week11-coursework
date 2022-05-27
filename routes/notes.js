@@ -4,14 +4,14 @@ const { readFromFile, readAndAppend } = require('../helpers/fsUtils');
 
 
 notes.get('/', (req,res) => {
-    console.info(`${req.method} request received for feedback`);
+    console.info(`${req.method} request received `);
     
     readFromFile('./db/db.json').then((data) => res.json(JSON.parse(data)));
 });
 
 notes.post('/', (req, res) => {
     // Log that a POST request was received
-    console.info(`${req.method} request received to submit feedback`);
+    console.info(`${req.method} request received`);
 
 
     // Destructuring assignment for the items in req.body
