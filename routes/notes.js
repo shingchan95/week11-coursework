@@ -25,6 +25,7 @@ notes.post('/', (req, res) => {
       };
   
       readAndAppend(newText, '../db/db.json');
+      require('../db/db.json')
   
       const response = {
         status: 'success',
