@@ -37,5 +37,5 @@ THEN I am presented with empty fields to enter a new note title and the note’s
 
 ## USAGE
 
-![alt text](./screencapture1.JPG "index page screenshot")
-![alt text](./screencapture2.JPG "note page screenshot")
+![alt text](./screencapture2.JPG "index page screenshot")
+![alt text](./screencapture1.JPG "note page screenshot")
