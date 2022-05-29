@@ -83,7 +83,10 @@ const handleNoteDelete = (e) => {
   e.stopPropagation();
 
   const note = e.target;
-  const noteId = JSON.parse(note.parentElement.getAttribute('data-note')).id;
+  const noteId = JSON.parse(note.parentElement.getAttribute('data-note')).text_id;
+
+
+
 
   if (activeNote.id === noteId) {
     activeNote = {};
@@ -146,6 +149,7 @@ const renderNoteList = async (notes) => {
         'text-danger',
         'delete-note'
       );
+     
       delBtnEl.addEventListener('click', handleNoteDelete);
 
       liEl.append(delBtnEl);
@@ -178,6 +182,7 @@ if (window.location.pathname === '/notes') {
   newNoteBtn.addEventListener('click', handleNewNoteView);
   noteTitle.addEventListener('keyup', handleRenderSaveBtn);
   noteText.addEventListener('keyup', handleRenderSaveBtn);
+
 }
 
 getAndRenderNotes();

@@ -1,5 +1,5 @@
 const notes = require('express').Router();
-const { readFromFile, readAndAppend } = require('../helpers/fsUtils');
+const { readFromFile, readAndAppend, writeToFile} = require('../helpers/fsUtils');
 const uuid = require('../helpers/uuid');
 
 
@@ -40,6 +40,22 @@ notes.post('/', (req, res) => {
     } else {
       res.json('Error in posting text');
     }
+  });
+
+  notes.delete('/:text_id', (req, res) => {
+    const textId = req.params.text_id;
+    readFromFile('./db/db.json')
+      .then((data) => JSON.parse(data))
+      .then((json) => {
+        // Make a new array of all tips except the one with the ID provided in the URL
+        const result = json.filter((notes) => notes.text_id !== textId);
+  
+        // Save that array to the filesystem
+        writeToFile('./db/db.json', result);
+  
+        // Respond to the DELETE request
+        res.json(`Item ${textId} has been deleted 🗑️`);
+      });
   });
   
   
